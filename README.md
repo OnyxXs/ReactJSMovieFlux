@@ -4,9 +4,13 @@ A Movie/TV show app
 
 ## 🧐 Features
 
-- 1
-- 2
-- 3
+- Inscription / Connexion
+- Series list and details
+- Episode Schedule
+- Reviews & Comments
+- New Episode Notifications
+- Search for series
+- User Profiles
 
 ## 🙇 Authors
 
