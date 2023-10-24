@@ -1,4 +1,4 @@
-# <p align="center">ReactJS_MovieFlux</p>
+# <p align="center">ReactJSMovieFlux</p>
 
 A Movie/TV show app
 
