@@ -1,0 +1,67 @@
+/* Styles for the body of the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header styles */
+  .header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Navigation menu styles */
+  .navbar {
+    background-color: #444;
+    text-align: center;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 10px;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main content area */
+  .main-content {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Style for each movie item in the grid */
+  .movie-item {
+    width: calc(33.33% - 10px); /* 3 movies per line with spacing */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+  
+  /* Style for movie titles */
+  .movie-title {
+    font-weight: bold;
+  }
+  
+  /* Style for movie posters */
+  .movie-poster {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Style for movie ratings */
+  .movie-rating {
+    color: #f39c12;
+  }
+  
