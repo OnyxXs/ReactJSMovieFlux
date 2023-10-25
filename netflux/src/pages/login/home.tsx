@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { database } from "../../back/firebaseConfig";
+import { database } from "../../config/firebaseConfig";
 import "./home.css";
 
 interface Movie {
@@ -24,23 +24,20 @@ function HomeScreen() {
 
   const mapCategoryToGenreID = (category: string) => {
     const categoryMap: { [key: string]: number } = {
-      "Horror": 27,
-      "Romance": 10749,
+      Horror: 27,
+      Romance: 10749,
       "Science Fiction": 878,
-      "Action": 28,
+      Action: 28,
     };
     return categoryMap[category];
   };
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    )
+    fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.results);
@@ -84,9 +81,9 @@ function HomeScreen() {
       return b.vote_average - a.vote_average;
     } else if (sortBy === "category") {
       if (selectedCategory) {
-        return (
-          a.genre_ids.includes(mapCategoryToGenreID(selectedCategory)) ? -1 : 1
-        );
+        return a.genre_ids.includes(mapCategoryToGenreID(selectedCategory))
+          ? -1
+          : 1;
       }
     }
     return 0;
@@ -100,11 +97,7 @@ function HomeScreen() {
       <h2 className="header">Movie List</h2>
       <div className="sort-select">
         <label htmlFor="sort-select">Sort by:</label>
-        <select
-          id="sort-select"
-          value={sortBy}
-          onChange={handleSortChange}
-        >
+        <select id="sort-select" value={sortBy} onChange={handleSortChange}>
           <option value="title">Title A-Z</option>
           <option value="year">Year</option>
           <option value="rating">Rating</option>
