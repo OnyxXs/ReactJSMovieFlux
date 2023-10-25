@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import React from "react";
-import { database } from "../../config/firebaseConfig";
+import { auth } from "./config/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 function HomeScreen() {
@@ -8,7 +8,7 @@ function HomeScreen() {
 
   console.log("HomeScreen rendered!");
   const handleClick = () => {
-    signOut(database)
+    signOut(auth)
       .then((val) => {
         console.log(val, "val");
         history("/");

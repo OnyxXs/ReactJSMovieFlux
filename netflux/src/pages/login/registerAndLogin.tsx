@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { database } from "../../config/firebaseConfig";
+import { auth } from "../../config/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -14,7 +14,7 @@ function RegisterAndlogin() {
     const email = e.currentTarget.email.value;
     const password = e.currentTarget.password.value;
     if (type === "signup") {
-      createUserWithEmailAndPassword(database, email, password)
+      createUserWithEmailAndPassword(auth, email, password)
         .then((data) => {
           console.log(data, "AuthData");
           history("./home");
@@ -24,7 +24,7 @@ function RegisterAndlogin() {
           setLogin(true);
         });
     } else {
-      signInWithEmailAndPassword(database, email, password)
+      signInWithEmailAndPassword(auth, email, password)
         .then((data) => {
           console.log(data, "AuthData");
           history("./home");
@@ -34,6 +34,10 @@ function RegisterAndlogin() {
           setLogin(true);
         });
     }
+  };
+
+  const handleReset = () => {
+    history("/reset");
   };
 
   return (
@@ -60,6 +64,9 @@ function RegisterAndlogin() {
         <input name="password" type="password" placeholder="Password" />
         <br />
         <button type="submit">{login ? "SignIn" : "SignUp"}</button>
+        <br />
+        <p onClick={handleReset}>Forgot Password?</p>
+        <br />
       </form>
     </div>
   );
