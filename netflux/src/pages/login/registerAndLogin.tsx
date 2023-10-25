@@ -47,23 +47,23 @@ function RegisterAndlogin() {
             className={login === false ? "activeColor" : "pointer"}
             onClick={() => setLogin(false)}
           >
-            SignUp
+            Sign Up
           </div>
           <div
             className={login === true ? "activeColor" : "pointer"}
             onClick={() => setLogin(true)}
           >
-            SignIn
+            Sign In
           </div>
         </div>
         <div className="row2">
-          <h1 id="h1Sign">{login ? "SignIn" : "SignUp"}</h1>
+          <h1 id="h1Sign">{login ? "Sign In" : "Sign Up"}</h1>
           <form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
             <input id='inputMail' name="email" placeholder="Email" />
             <br />
             <input id='inputPassword' name="password" type="password" placeholder="Password" />
             <br />
-            <button type="submit">{login ? "SignIn" : "SignUp"}</button>
+            <button type="submit">{login ? "Sign In" : "Sign Up"}</button>
           </form>
         </div>
       </div>
