@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { database } from "../../back/firebaseConfig";
+import { database } from "../../config/firebaseConfig";
 import "./home.css";
 
 interface Movie {
