@@ -39,29 +39,37 @@ function RegisterAndlogin() {
 
   return (
     <div className="App">
-      {/* Registration and login Screen */}
-      <div className="row">
-        <div
-          className={login === false ? "activeColor" : "pointer"}
-          onClick={() => setLogin(false)}
-        >
-          SignUp
+      <div className="Leftbar">
+        {/* Registration and login Screen */}
+        <div className="row">
+          <div
+            id="rightSpace"
+            className={login === false ? "activeColor" : "pointer"}
+            onClick={() => setLogin(false)}
+          >
+            SignUp
+          </div>
+          <div
+            className={login === true ? "activeColor" : "pointer"}
+            onClick={() => setLogin(true)}
+          >
+            SignIn
+          </div>
         </div>
-        <div
-          className={login === true ? "activeColor" : "pointer"}
-          onClick={() => setLogin(true)}
-        >
-          SignIn
+        <div className="row2">
+          <h1 id="h1Sign">{login ? "SignIn" : "SignUp"}</h1>
+          <form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
+            <input id='inputMail' name="email" placeholder="Email" />
+            <br />
+            <input id='inputPassword' name="password" type="password" placeholder="Password" />
+            <br />
+            <button type="submit">{login ? "SignIn" : "SignUp"}</button>
+          </form>
         </div>
       </div>
-      <h1>{login ? "SignIn" : "SignUp"}</h1>
-      <form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
-        <input name="email" placeholder="Email" />
-        <br />
-        <input name="password" type="password" placeholder="Password" />
-        <br />
-        <button type="submit">{login ? "SignIn" : "SignUp"}</button>
-      </form>
+      <div className="image">
+        <img id="imagelock" src="https://cdn.discordapp.com/attachments/1153239879220740159/1166667262946717826/image.png?ex=654b528f&is=6538dd8f&hm=c1b05fddb2536d9e277aee6bf0eee2867e408160d3319a4a6506fba146d4105d&" alt="Fond" />
+      </div>
     </div>
   );
 }
