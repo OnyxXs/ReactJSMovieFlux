@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { database } from "../../back/firebaseConfig";
+import './passwordLoginWithFirebase.css';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
