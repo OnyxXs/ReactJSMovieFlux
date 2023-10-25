@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import React from "react";
-import { database } from "../../back/firebaseConfig";
+import { database } from "../../config/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 function HomeScreen() {
