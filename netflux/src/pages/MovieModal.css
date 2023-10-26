@@ -5,57 +5,57 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px); 
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 999;
     overflow-y: auto;
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     padding: 20px;
     text-align: center;
     position: relative;
-    max-width: 80%;
-  }
+    max-width: 40%; 
+    margin: 20px;
+}
 
-  .close {
+.close {
     position: fixed;
     top: 10px;
     right: 10px;
     font-size: 24px;
     cursor: pointer;
     color: #777;
-    z-index: 1000;
+    z-index: 1001;
     transform: translate(0, 0);
-  }
-  
-  .movie-poster {
+}
+
+.movie-poster {
     max-width: 100%;
     height: auto;
-  }
-  
-  .movie-title {
+}
+
+.movie-title {
     font-size: 28px;
     font-weight: bold;
     margin: 10px 0;
-  }
-  
-  .movie-rating {
+}
+
+.movie-rating {
     font-size: 20px;
     color: #ffac00;
     margin-bottom: 20px;
-  }
-  
-  .movie-summary {
+}
+
+.movie-summary {
     font-size: 16px;
     line-height: 1.5;
     margin: 20px 0;
-    max-height: 200px; 
+    max-height: 200px;
     overflow-y: auto;
-  }
-  
+}
