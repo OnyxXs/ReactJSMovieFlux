@@ -15,7 +15,7 @@ function ForgotPassword() {
     sendPasswordResetEmail(auth, emailVal)
       .then((data) => {
         alert("Check your gmail");
-        history("./");
+        history("/");
       })
       .catch((err) => {
         alert(err.code);
