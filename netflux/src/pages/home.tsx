@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { database } from "../../config/firebaseConfig";
+import { database } from "../config/firebaseConfig";
 import { Link } from "react-router-dom";
 import "./home.css";
+import MovieModal from "./MovieModal";
 
 interface Movie {
   id: number;
@@ -12,15 +13,18 @@ interface Movie {
   vote_average: number;
   release_date: string;
   genre_ids: number[];
+  overview: string;
 }
 
 function HomeScreen() {
   const history = useNavigate();
+  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [movies, setMovies] = useState<Movie[]>([]);
   const [sortBy, setSortBy] = useState<string>("title");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+
   const apiKey = "322e602f97c88b604f6b06f734d87c9c";
-  const accessToken = "YOUR_ACCESS_TOKEN"; // Remplacez par votre véritable jeton d'accès
+  const accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjJlNjAyZjk3Yzg4YjYwNGY2YjA2ZjczNGQ4N2M5YyIsInN1YiI6IjY1MzhkMDU2OWMyNGZjMDEwM2UwZjdmYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KXuBpgR7ruBWM64tPEGeSq1OLbGzonlQmnYqVhk3LJ0";
 
   const mapCategoryToGenreID = (category: string) => {
     const categoryMap: { [key: string]: number } = {
@@ -80,6 +84,7 @@ function HomeScreen() {
         parseInt(a.release_date.substring(0, 4))
       );
     } else if (sortBy === "director") {
+      // Vous pouvez implémenter la logique pour trier par réalisateur ici
     } else if (sortBy === "rating") {
       return b.vote_average - a.vote_average;
     } else if (sortBy === "category") {
@@ -130,7 +135,11 @@ function HomeScreen() {
       </div>
       <div className="main-content">
         {sortedMovies.map((movie) => (
-          <Link to={`/details/${movie.id}`} key={movie.id} className="movie-item">
+          <div
+            key={movie.id}
+            className="movie-item"
+            onClick={() => setSelectedMovie(movie)}
+          >
             <div className="movie-details">
               <img
                 className="movie-poster"
@@ -140,9 +149,16 @@ function HomeScreen() {
               <h3 className="movie-title">{movie.title}</h3>
               <p className="movie-rating">Rating: {movie.vote_average}</p>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
+      {/* Affichez la fenêtre modale avec les détails du film/série sélectionné */}
+      {selectedMovie && (
+        <MovieModal
+          movie={selectedMovie}
+          onClose={() => setSelectedMovie(null)}
+        />
+      )}
     </div>
   );
 }
