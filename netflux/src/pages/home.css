@@ -5,6 +5,10 @@ body {
   padding: 0;
 }
 
+.startpage {
+  margin-top: 3%;
+}
+
 .header {
   background-color: #333;
   color: #fff;

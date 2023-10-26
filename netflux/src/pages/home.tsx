@@ -143,8 +143,9 @@ function HomeScreen() {
     });
 
   return (
-    <div>
+    <div className="startpage">
       <Header />
+
       <button onClick={handleClick} className="button-sign-out">
         Sign Out
       </button>
