@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { database } from "../../config/firebaseConfig";
 import { Link } from "react-router-dom";
 import "./home.css";
+import Header from './header';
 
 interface Movie {
   id: number;
@@ -95,9 +96,7 @@ function HomeScreen() {
   return (
     <div>
       
-      <div id="header">
-        <iframe src="header.html"></iframe>
-      </div>
+      <Header /> {/* Utilisez le composant d'en-tête ici */}
 
       <h1 className="header">Home</h1>
       <button onClick={handleClick} className="button-sign-out">
