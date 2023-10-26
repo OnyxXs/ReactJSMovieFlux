@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, createUserDocument } from "../../config/firebaseConfig";
+import { auth } from "../../config/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -16,7 +16,6 @@ function RegisterAndlogin() {
     e.preventDefault();
     const email = e.currentTarget.email.value;
     const password = e.currentTarget.password.value;
-    const displayName = e.currentTarget.displayname.value;
     if (type === "signup") {
       createUserWithEmailAndPassword(auth, email, password)
         .then((data) => {
@@ -27,7 +26,6 @@ function RegisterAndlogin() {
           alert(err.code);
           setLogin(true);
         });
-      await createUserDocument(auth, { displayName });
     } else {
       signInWithEmailAndPassword(auth, email, password)
         .then((data) => {
