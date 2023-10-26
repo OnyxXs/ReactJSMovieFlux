@@ -24,7 +24,8 @@ function HomeScreen() {
   const [searchValue, setSearchValue] = useState<string>("");
 
   const apiKey = "322e602f97c88b604f6b06f734d87c9c";
-  const accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjJlNj02ZmMxMGUwZjdmYyIsInN1YiI6IjY1MzhkYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4fDC3EgVki";
+  const accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjJlNj02ZmC0t" +
+    "InN1YiI6IjY1MzhkYyIsInSjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4fDC3EgVki";
 
   const mapCategoryToGenreID = (category: string) => {
     const categoryMap: { [key: string]: number } = {
@@ -37,22 +38,41 @@ function HomeScreen() {
   };
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`,
-      {
+    if (searchValue) {
+      fetch(
+        `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${searchValue}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.results) {
+            setMovies(data.results);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    } else {
+      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setMovies(data.results);
       })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
-  }, [apiKey, accessToken]);
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.results) {
+            setMovies(data.results);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    }
+  }, [apiKey, accessToken, searchValue]);
 
   const handleClick = () => {
     signOut(database)
@@ -77,14 +97,17 @@ function HomeScreen() {
   const sortedMovies = [...movies];
   sortedMovies.sort((a, b) => {
     if (sortBy === "title") {
-      return a.title.localeCompare(b.title);
+      if (a.title && b.title) {
+        return a.title.localeCompare(b.title);
+      }
     } else if (sortBy === "year") {
-      return (
-        parseInt(b.release_date.substring(0, 4)) -
-        parseInt(a.release_date.substring(0, 4))
-      );
+      if (a.release_date && b.release_date) {
+        return (
+          parseInt(b.release_date.substring(0, 4)) -
+          parseInt(a.release_date.substring(0, 4))
+        );
+      }
     } else if (sortBy === "director") {
-      // Vous pouvez implémenter la logique pour trier par réalisateur ici
     } else if (sortBy === "rating") {
       return b.vote_average - a.vote_average;
     } else if (sortBy === "category") {
@@ -97,22 +120,21 @@ function HomeScreen() {
     return 0;
   });
 
-  // Filtrer les films/séries en fonction de la recherche et du genre
   const filteredMovies = sortedMovies
     .filter((movie) => {
-      // Filtrer par genre (si un genre est sélectionné)
-      if (selectedCategory) {
+      if (selectedCategory && movie.genre_ids) {
         const genreId = mapCategoryToGenreID(selectedCategory);
         return movie.genre_ids.includes(genreId);
       }
-      // Sinon, retournez true pour conserver tous les films/séries
       return true;
     })
     .filter((movie) => {
-      // Filtrer par mots-clés de recherche
-      const searchKeywords = searchValue.toLowerCase();
-      const movieTitle = movie.title.toLowerCase();
-      return movieTitle.includes(searchKeywords);
+      if (searchValue && movie.title) {
+        const searchKeywords = searchValue.toLowerCase();
+        const movieTitle = movie.title.toLowerCase();
+        return movieTitle.includes(searchKeywords);
+      }
+      return true;
     });
 
   return (
@@ -125,15 +147,10 @@ function HomeScreen() {
       <h2 className="header">Movie List</h2>
       <div className="sort-select">
         <label htmlFor="sort-select">Sort by:</label>
-        <select
-          id="sort-select"
-          value={sortBy}
-          onChange={handleSortChange}
-        >
+        <select id="sort-select" value={sortBy} onChange={handleSortChange}>
           <option value="title">Title A-Z</option>
           <option value="year">Year</option>
           <option value="rating">Rating</option>
-          <option value="category">Category</option>
         </select>
         {sortBy === "category" && (
           <div className="category-buttons">
@@ -169,7 +186,6 @@ function HomeScreen() {
           <option value="Action">Action</option>
         </select>
       </div>
-      {/* Affichez la liste filtrée des films/séries */}
       <div className="main-content">
         {filteredMovies.map((movie) => (
           <div
@@ -189,7 +205,6 @@ function HomeScreen() {
           </div>
         ))}
       </div>
-      {/* Affichez la fenêtre modale avec les détails du film/série sélectionné */}
       {selectedMovie && (
         <MovieModal
           movie={selectedMovie}
