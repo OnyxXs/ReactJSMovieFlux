@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { database } from "./config/firebaseConfig";
+import { auth } from "../../config/firebaseConfig";
 import "./home.css";
 
 interface Movie {
@@ -48,7 +48,7 @@ function HomeScreen() {
   }, [apiKey, accessToken]);
 
   const handleClick = () => {
-    signOut(database)
+    signOut(auth)
       .then(() => {
         history("/");
       })
@@ -63,6 +63,12 @@ function HomeScreen() {
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+  };
+
+  const handleClickProfile = () => {
+    signOut(auth).then(() => {
+      history("/profile");
+    });
   };
 
   const categories = ["", "Horror", "Romance", "Science Fiction", "Action"];
@@ -92,6 +98,7 @@ function HomeScreen() {
   return (
     <div>
       <h1 className="header">Home</h1>
+      <button onClick={handleClickProfile}>Profile</button>
       <button onClick={handleClick}>Sign Out</button>
 
       <h2 className="header">Movie List</h2>

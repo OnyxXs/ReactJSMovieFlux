@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { database } from "../../config/firebaseConfig";
+import { auth, createUserDocument } from "../../config/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -9,12 +9,16 @@ import { useNavigate } from "react-router-dom";
 function RegisterAndlogin() {
   const [login, setLogin] = useState(false);
   const history = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, type: string) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+    type: string
+  ) => {
     e.preventDefault();
     const email = e.currentTarget.email.value;
     const password = e.currentTarget.password.value;
+    const displayName = e.currentTarget.displayname.value;
     if (type === "signup") {
-      createUserWithEmailAndPassword(database, email, password)
+      createUserWithEmailAndPassword(auth, email, password)
         .then((data) => {
           console.log(data, "AuthData");
           history("./home");
@@ -23,8 +27,9 @@ function RegisterAndlogin() {
           alert(err.code);
           setLogin(true);
         });
+      await createUserDocument(auth, { displayName });
     } else {
-      signInWithEmailAndPassword(database, email, password)
+      signInWithEmailAndPassword(auth, email, password)
         .then((data) => {
           console.log(data, "AuthData");
           history("./home");
