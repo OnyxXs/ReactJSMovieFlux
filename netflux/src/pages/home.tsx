@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { database } from "../config/firebaseConfig";
-import { Link } from "react-router-dom";
 import "./home.css";
 import MovieModal from "./MovieModal";
 
@@ -22,9 +21,10 @@ function HomeScreen() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [sortBy, setSortBy] = useState<string>("title");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>("");
 
   const apiKey = "322e602f97c88b604f6b06f734d87c9c";
-  const accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjJlNjAyZjk3Yzg4YjYwNGY2YjA2ZjczNGQ4N2M5YyIsInN1YiI6IjY1MzhkMDU2OWMyNGZjMDEwM2UwZjdmYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KXuBpgR7ruBWM64tPEGeSq1OLbGzonlQmnYqVhk3LJ0";
+  const accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjJlNj02ZmMxMGUwZjdmYyIsInN1YiI6IjY1MzhkYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4fDC3EgVki";
 
   const mapCategoryToGenreID = (category: string) => {
     const categoryMap: { [key: string]: number } = {
@@ -97,6 +97,24 @@ function HomeScreen() {
     return 0;
   });
 
+  // Filtrer les films/séries en fonction de la recherche et du genre
+  const filteredMovies = sortedMovies
+    .filter((movie) => {
+      // Filtrer par genre (si un genre est sélectionné)
+      if (selectedCategory) {
+        const genreId = mapCategoryToGenreID(selectedCategory);
+        return movie.genre_ids.includes(genreId);
+      }
+      // Sinon, retournez true pour conserver tous les films/séries
+      return true;
+    })
+    .filter((movie) => {
+      // Filtrer par mots-clés de recherche
+      const searchKeywords = searchValue.toLowerCase();
+      const movieTitle = movie.title.toLowerCase();
+      return movieTitle.includes(searchKeywords);
+    });
+
   return (
     <div>
       <h1 className="header">Home</h1>
@@ -133,8 +151,27 @@ function HomeScreen() {
           </div>
         )}
       </div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search for movies or series..."
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Genres</option>
+          <option value="Horror">Horror</option>
+          <option value="Romance">Romance</option>
+          <option value="Science Fiction">Science Fiction</option>
+          <option value="Action">Action</option>
+        </select>
+      </div>
+      {/* Affichez la liste filtrée des films/séries */}
       <div className="main-content">
-        {sortedMovies.map((movie) => (
+        {filteredMovies.map((movie) => (
           <div
             key={movie.id}
             className="movie-item"
