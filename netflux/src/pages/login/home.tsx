@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { database } from "../../config/firebaseConfig";
+import { Link } from "react-router-dom";
 import "./home.css";
+import Header from './header';
 
 interface Movie {
   id: number;
@@ -19,8 +21,7 @@ function HomeScreen() {
   const [sortBy, setSortBy] = useState<string>("title");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const apiKey = "322e602f97c88b604f6b06f734d87c9c";
-  const accessToken =
-    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjJlNjAyZjk3Yzg4YjUzNzE4ZTlkYWI0ZjE0MTc4YSIsInN1Ii6IjY1MzhkMDU2OWMyNGZjMDEwM2UwZjdmYyIsInNjb3BlcyI6IioiLCJ2ZXJzaW9uIjoxfQ.7G05g75j5bsg88sd86d8f87g5f2";
+  const accessToken = "YOUR_ACCESS_TOKEN"; // Remplacez par votre véritable jeton d'accès
 
   const mapCategoryToGenreID = (category: string) => {
     const categoryMap: { [key: string]: number } = {
@@ -91,8 +92,13 @@ function HomeScreen() {
 
   return (
     <div>
+      
+      <Header /> {/* Utilisez le composant d'en-tête ici */}
+
       <h1 className="header">Home</h1>
-      <button onClick={handleClick}>Sign Out</button>
+      <button onClick={handleClick} className="button-sign-out">
+        Sign Out
+      </button>
 
       <h2 className="header">Movie List</h2>
       <div className="sort-select">
@@ -119,19 +125,21 @@ function HomeScreen() {
           </div>
         )}
       </div>
-      <ul className="main-content">
+      <div className="main-content">
         {sortedMovies.map((movie) => (
-          <li key={movie.id} className="movie-item">
-            <h3 className="movie-title">{movie.title}</h3>
-            <img
-              className="movie-poster"
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p className="movie-rating">Rating: {movie.vote_average}</p>
-          </li>
+          <Link to={`/details/${movie.id}`} key={movie.id} className="movie-item">
+            <div className="movie-details">
+              <img
+                className="movie-poster"
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <h3 className="movie-title">{movie.title}</h3>
+              <p className="movie-rating">Rating: {movie.vote_average}</p>
+            </div>
+          </Link>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
