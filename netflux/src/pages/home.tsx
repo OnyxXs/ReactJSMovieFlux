@@ -13,6 +13,9 @@ interface Movie {
   release_date: string;
   genre_ids: number[];
   overview: string;
+  media_type: string; // Ajout du type de média (film ou série)
+  production_companies: { name: string }[]; // Ajout du producteur du film/série
+  number_of_seasons?: number; // Ajout du nombre de saisons (série uniquement)
 }
 
 function HomeScreen() {
@@ -108,6 +111,7 @@ function HomeScreen() {
         );
       }
     } else if (sortBy === "director") {
+      // Vous pouvez implémenter la logique pour trier par réalisateur ici
     } else if (sortBy === "rating") {
       return b.vote_average - a.vote_average;
     } else if (sortBy === "category") {
@@ -201,6 +205,14 @@ function HomeScreen() {
               />
               <h3 className="movie-title">{movie.title}</h3>
               <p className="movie-rating">Rating: {movie.vote_average}</p>
+              {movie.production_companies && movie.production_companies.length > 0 && (
+                <p className="movie-producer">
+                  Produced by: {movie.production_companies.map((company) => company.name).join(', ')}
+                </p>
+              )}
+              {movie.media_type === 'tv' && movie.number_of_seasons && (
+                <p className="movie-seasons">Seasons: {movie.number_of_seasons}</p>
+              )}
             </div>
           </div>
         ))}
