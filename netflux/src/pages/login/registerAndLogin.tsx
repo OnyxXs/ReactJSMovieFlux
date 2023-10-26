@@ -39,6 +39,10 @@ function RegisterAndlogin() {
     }
   };
 
+  const handleReset = () => {
+    history("/reset");
+  };
+
   return (
     <div className="App">
       {/* Registration and login Screen */}
@@ -63,6 +67,9 @@ function RegisterAndlogin() {
         <input name="password" type="password" placeholder="Password" />
         <br />
         <button type="submit">{login ? "SignIn" : "SignUp"}</button>
+        <br />
+        <p onClick={handleReset}>Forgot Password?</p>
+        <br />
       </form>
     </div>
   );
