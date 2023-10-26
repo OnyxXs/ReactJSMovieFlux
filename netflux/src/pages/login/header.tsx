@@ -13,9 +13,9 @@ const Header: React.FC = () => {
                 <div className="dropdown">
                     <button className="dropdown-btn">Menu</button>
                     <div className="dropdown-content">
-                        <a href="#">Page 1</a>
-                        <a href="#">Page 2</a>
-                        <a href="#">Page 3</a>
+                        <a href="#">Account</a>
+                        <a href="#">About us</a>
+                        <a href="#">Logout</a>
                     </div>
                 </div>
 
