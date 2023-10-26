@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC2AslfRDgksAjaytOdlCgiYznbIhOtV9g",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "netfluxlog.firebaseapp.com",
   projectId: "netfluxlog",
   storageBucket: "netfluxlog.appspot.com",
@@ -11,4 +12,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const database = getAuth(app);
+
+export const auth = getAuth(app);
+export const firestore = getFirestore();

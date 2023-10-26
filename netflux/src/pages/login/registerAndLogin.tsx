@@ -1,21 +1,32 @@
 import React, { useState } from "react";
-import { database } from "../../config/firebaseConfig";
+import { auth, firestore } from "../../config/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
 
 function RegisterAndlogin() {
   const [login, setLogin] = useState(false);
   const history = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, type: string) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+    type: string
+  ) => {
     e.preventDefault();
     const email = e.currentTarget.email.value;
     const password = e.currentTarget.password.value;
     if (type === "signup") {
-      createUserWithEmailAndPassword(database, email, password)
-        .then((data) => {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(async (data) => {
+          if (data.user.uid) {
+            const userDocRef = doc(firestore, "users", data.user.uid);
+            await setDoc(userDocRef, {
+              id: data.user.uid,
+              email: data.user.email,
+            });
+          }
           console.log(data, "AuthData");
           history("./home");
         })
@@ -24,7 +35,7 @@ function RegisterAndlogin() {
           setLogin(true);
         });
     } else {
-      signInWithEmailAndPassword(database, email, password)
+      signInWithEmailAndPassword(auth, email, password)
         .then((data) => {
           console.log(data, "AuthData");
           history("./home");
@@ -34,6 +45,10 @@ function RegisterAndlogin() {
           setLogin(true);
         });
     }
+  };
+
+  const handleReset = () => {
+    history("/reset");
   };
 
   return (
@@ -60,6 +75,9 @@ function RegisterAndlogin() {
         <input name="password" type="password" placeholder="Password" />
         <br />
         <button type="submit">{login ? "SignIn" : "SignUp"}</button>
+        <br />
+        <p onClick={handleReset}>Forgot Password?</p>
+        <br />
       </form>
     </div>
   );
