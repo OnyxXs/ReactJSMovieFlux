@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { database } from "../config/firebaseConfig";
 import "./home.css";
 import MovieModal from "./MovieModal";
+import Header from './header';
 
 interface Movie {
   id: number;
@@ -143,7 +144,7 @@ function HomeScreen() {
 
   return (
     <div>
-      <h1 className="header">Home</h1>
+      <Header />
       <button onClick={handleClick} className="button-sign-out">
         Sign Out
       </button>
