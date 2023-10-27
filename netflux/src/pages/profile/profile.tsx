@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import './profile.css'
+import "./profile.css";
 import {
   Auth,
   getAuth,
@@ -118,13 +118,14 @@ const UserProfile: React.FC = () => {
 
   return (
     <div className="Leftbar">
-
       <div className="h1-container">
         <h1 className="h1">Profil Utilisateur</h1>
       </div>
       {user ? (
         <>
-          <p className="pUsername">Vous êtes connecté en tant que : {user.email}</p>
+          <p className="pUsername">
+            Vous êtes connecté en tant que : {user.email}
+          </p>
 
           <h2 className="h2">Changer votre email :</h2>
           <input
