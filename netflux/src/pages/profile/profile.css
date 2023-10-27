@@ -34,3 +34,19 @@ body {
     margin-top: 10vmax;
     margin-left: 32vmax;
 }
+
+.pUsername {
+    text-decoration: underline;
+}
+
+button {
+    display: flex;
+    color: white;
+    margin-top: 0.2vmax;
+    padding: 10px 24px;
+    justify-content: center;    
+    width: 13   vmax;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #717171;
+}

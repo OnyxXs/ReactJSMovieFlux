@@ -125,7 +125,7 @@ const UserProfile: React.FC = () => {
       </div>
       {user ? (
         <>
-          <p>Vous êtes connecté en tant que : {user.email}</p>
+          <p className="pUsername">Vous êtes connecté en tant que : {user.email}</p>
 
           <h2 className="h2">Changer votre email :</h2>
           <input
