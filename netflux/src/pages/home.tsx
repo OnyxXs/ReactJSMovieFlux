@@ -146,14 +146,35 @@ function HomeScreen() {
   return (
     <div>
       <Navbar />
-      <h1 className="header">Home</h1>
-      <button onClick={handleClick} className="button-sign-out">
-        Sign Out
-      </button>
-
-      <h2 className="header">Movie List</h2>
+      <br></br>
+      <br></br>
+      <img
+        src="https://www.themarysue.com/wp-content/uploads/2021/11/Spy-x-Family-with-logo.jpg?fit=1200%2C670"
+        alt="Description"
+        className="centered-image"
+      />
+      <br></br>
+      <br></br>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search for movies or series..."
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+        <select
+          aria-label="Category"
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          <option value="">All Genres</option>
+          <option value="Horror">Horror</option>
+          <option value="Romance">Romance</option>
+          <option value="Science Fiction">Science Fiction</option>
+          <option value="Action">Action</option>
+        </select>
+      </div>
       <div className="sort-select">
-        <label htmlFor="sort-select">Sort by:</label>
         <select id="sort-select" value={sortBy} onChange={handleSortChange}>
           <option value="title">Title A-Z</option>
           <option value="year">Year</option>
@@ -174,25 +195,6 @@ function HomeScreen() {
             ))}
           </div>
         )}
-      </div>
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search for movies or series..."
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-        <select
-          aria-label="Category"
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          <option value="">All Genres</option>
-          <option value="Horror">Horror</option>
-          <option value="Romance">Romance</option>
-          <option value="Science Fiction">Science Fiction</option>
-          <option value="Action">Action</option>
-        </select>
       </div>
       <div className="main-content">
         {filteredMovies.map((movie) => (

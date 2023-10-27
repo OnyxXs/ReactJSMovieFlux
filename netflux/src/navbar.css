@@ -1,61 +1,41 @@
 .navbar {
     display: flex;
-    top: 0;
-    left: 0;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 5%;
     background-color: #333;
     color: #fff;
-    position: fixed;
-    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #444;
+    font-family: 'Arial', sans-serif;
+    /* ou une autre police de caractère */
+}
+
+.navbar div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* ajuster l'espacement */
 }
 
 .navbar button {
     background: none;
     border: none;
     color: #fff;
-    margin: 0 15px;
     font-size: 16px;
     cursor: pointer;
     outline: none;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .navbar button:hover {
     color: #ddd;
+    transform: translateY(-2px);
 }
 
-.logo {
-    width: 200px;
-}
-
-.dropdown-btn {
-    border: none;
-    border-radius: 15%;
-    cursor: pointer;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #5a5a5a;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content a {
-    padding: 12px 16px;
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #d40000;
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
 }
