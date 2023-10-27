@@ -1,18 +1,19 @@
 import React from 'react';
+import "../navbar.css"
 
 const Navbar = () => {
-  return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px', background: '#333' }}>
-      <div>
-        <button style={{ margin: '0 10px' }}>Calendar</button>
-        <button style={{ margin: '0 10px' }}>Shows</button>
-        <button style={{ margin: '0 10px' }}>Profile</button>
-      </div>
-      <div>
-        <img src="URL_DE_VOTRE_IMAGE" alt="Profil" style={{ width: '40px', borderRadius: '50%' }} />
-      </div>
-    </div>
-  );
-}
+    return (
+        <div className="navbar">
+            <div>
+                <img src="https://media.discordapp.net/attachments/1166370986355064844/1167096613408342127/AddText_10-25-03.21.23_1.png?ex=654ce26c&is=653a6d6c&hm=e4d407e6ccfef0d592f1c0e8dfdc532057fadb389ac75fc31db01f7758baf390&=&width=1920&height=257" alt="Profil" className="logo" />
+            </div>
+            <div>
+                <button>Profile</button>
+                <button>About us</button>
+            </div>
+            
+        </div>
+    );
+  }
 
 export default Navbar;
