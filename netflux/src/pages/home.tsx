@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { database } from "../config/firebaseConfig";
+import { auth } from "../config/firebaseConfig";
 import "./home.css";
 import MovieModal from "./MovieModal";
 
@@ -79,7 +79,7 @@ function HomeScreen() {
   }, [apiKey, accessToken, searchValue]);
 
   const handleClick = () => {
-    signOut(database)
+    signOut(auth)
       .then(() => {
         history("/");
       })

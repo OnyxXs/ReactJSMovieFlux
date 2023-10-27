@@ -20,7 +20,7 @@ function HomeScreen() {
   const [sortBy, setSortBy] = useState<string>("title");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const apiKey = "322e602f97c88b604f6b06f734d87c9c";
-  const accessToken = "YOUR_ACCESS_TOKEN"; // Remplacez par votre véritable jeton d'accès
+  const accessToken = "YOUR_ACCESS_TOKEN";
 
   const mapCategoryToGenreID = (category: string) => {
     const categoryMap: { [key: string]: number } = {
