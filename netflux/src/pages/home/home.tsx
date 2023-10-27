@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../config/firebaseConfig";
 import "./home.css";
-import Header from './header';
+import Header from "../../pages/login/header";
 
 interface Movie {
   id: number;
@@ -97,13 +97,10 @@ function HomeScreen() {
 
   return (
     <div>
-      
       <Header /> {/* Utilisez le composant d'en-tête ici */}
-
       <h1 className="header">Home</h1>
       <button onClick={handleClickProfile}>Profile</button>
       <button onClick={handleClick}>Sign Out</button>
-
       <h2 className="header">Movie List</h2>
       <div className="sort-select">
         <label htmlFor="sort-select">Sort by:</label>
@@ -131,7 +128,11 @@ function HomeScreen() {
       </div>
       <div className="main-content">
         {sortedMovies.map((movie) => (
-          <Link to={`/details/${movie.id}`} key={movie.id} className="movie-item">
+          <Link
+            to={`/details/${movie.id}`}
+            key={movie.id}
+            className="movie-item"
+          >
             <div className="movie-details">
               <img
                 className="movie-poster"

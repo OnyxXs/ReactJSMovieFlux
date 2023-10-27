@@ -13,9 +13,9 @@ interface Movie {
   release_date: string;
   genre_ids: number[];
   overview: string;
-  media_type: string; // Ajout du type de média (film ou série)
-  production_companies: { name: string }[]; // Ajout du producteur du film/série
-  number_of_seasons?: number; // Ajout du nombre de saisons (série uniquement)
+  media_type: string;
+  production_companies: { name: string }[];
+  number_of_seasons?: number;
 }
 
 function HomeScreen() {
@@ -27,15 +27,16 @@ function HomeScreen() {
   const [searchValue, setSearchValue] = useState<string>("");
 
   const apiKey = "322e602f97c88b604f6b06f734d87c9c";
-  const accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjJlNj02ZmC0t" +
+  const accessToken =
+    "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjJlNj02ZmC0t" +
     "InN1YiI6IjY1MzhkYyIsInSjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.4fDC3EgVki";
 
   const mapCategoryToGenreID = (category: string) => {
     const categoryMap: { [key: string]: number } = {
-      "Horror": 27,
-      "Romance": 10749,
+      Horror: 27,
+      Romance: 10749,
       "Science Fiction": 878,
-      "Action": 28,
+      Action: 28,
     };
     return categoryMap[category];
   };
@@ -111,7 +112,6 @@ function HomeScreen() {
         );
       }
     } else if (sortBy === "director") {
-      // Vous pouvez implémenter la logique pour trier par réalisateur ici
     } else if (sortBy === "rating") {
       return b.vote_average - a.vote_average;
     } else if (sortBy === "category") {
@@ -205,13 +205,19 @@ function HomeScreen() {
               />
               <h3 className="movie-title">{movie.title}</h3>
               <p className="movie-rating">Rating: {movie.vote_average}</p>
-              {movie.production_companies && movie.production_companies.length > 0 && (
-                <p className="movie-producer">
-                  Produced by: {movie.production_companies.map((company) => company.name).join(', ')}
+              {movie.production_companies &&
+                movie.production_companies.length > 0 && (
+                  <p className="movie-producer">
+                    Produced by:{" "}
+                    {movie.production_companies
+                      .map((company) => company.name)
+                      .join(", ")}
+                  </p>
+                )}
+              {movie.media_type === "tv" && movie.number_of_seasons && (
+                <p className="movie-seasons">
+                  Seasons: {movie.number_of_seasons}
                 </p>
-              )}
-              {movie.media_type === 'tv' && movie.number_of_seasons && (
-                <p className="movie-seasons">Seasons: {movie.number_of_seasons}</p>
               )}
             </div>
           </div>

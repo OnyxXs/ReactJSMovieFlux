@@ -11,7 +11,6 @@ import {
   sendEmailVerification,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import Categories from "../../components/categories";
 
 const UserProfile: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
