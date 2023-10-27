@@ -76,7 +76,7 @@ function RegisterAndlogin() {
       <div className="image">
         <img
           id="imagelock"
-          src="https://cdn.discordapp.com/attachments/1153239879220740159/1166667262946717826/image.png?ex=654b528f&is=6538dd8f&hm=c1b05fddb2536d9e277aee6bf0eee2867e408160d3319a4a6506fba146d4105d&"
+          src="https://media.discordapp.net/attachments/1166370986355064844/1167367538997460993/image.png?ex=654ddebd&is=653b69bd&hm=46139017d884fd38c1f4ed40cc43b30fd4182b19216ea50373c5176d875994a3&=&width=1262&height=1128"
           alt="Fond"
         />
       </div>
@@ -84,7 +84,7 @@ function RegisterAndlogin() {
       <div className="overlay">
         <img
           src="https://cdn.discordapp.com/attachments/1166370986355064844/1166728272751628390/AddText_10-25-03.21.23.png?ex=654b8b60&is=65391660&hm=20ee96d2ca0ecfcb6bbba7ec74307286069480762a016c5ea91f38572ce1bd6c&"
-          alt="Image overlay"
+          alt="Décoration abstraite"
         />
       </div>
 
