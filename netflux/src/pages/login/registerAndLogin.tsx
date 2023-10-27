@@ -1,21 +1,32 @@
 import React, { useState } from "react";
-import { auth } from "../../config/firebaseConfig";
+import { auth, firestore } from "../../config/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
 
 function RegisterAndlogin() {
   const [login, setLogin] = useState(false);
   const history = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, type: string) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+    type: string
+  ) => {
     e.preventDefault();
     const email = e.currentTarget.email.value;
     const password = e.currentTarget.password.value;
     if (type === "signup") {
       createUserWithEmailAndPassword(auth, email, password)
-        .then((data) => {
+        .then(async (data) => {
+          if (data.user.uid) {
+            const userDocRef = doc(firestore, "users", data.user.uid);
+            await setDoc(userDocRef, {
+              id: data.user.uid,
+              email: data.user.email,
+            });
+          }
           console.log(data, "AuthData");
           history("./home");
         })
