@@ -22,6 +22,7 @@
     position: relative;
     max-width: 20%; 
     margin: 20px;
+    margin-top: 15%;
 }
 
 .close {
@@ -59,3 +60,8 @@
     max-height: 200px;
     overflow-y: auto;
 }
+
+.user-comments {
+    margin-top: 20px; 
+  }
+  
