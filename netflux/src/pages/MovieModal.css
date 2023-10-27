@@ -1,3 +1,6 @@
+/* MovieModal.css */
+
+/* Movie Modal Background Styles */
 .modal-background {
     position: fixed;
     top: 0;
@@ -11,9 +14,10 @@
     align-items: center;
     z-index: 999;
     overflow-y: auto;
-}
-
-.modal-content {
+  }
+  
+  /* Movie Modal Content Styles */
+  .modal-content {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -34,26 +38,30 @@
     color: #777;
     z-index: 1001;
     transform: translate(0, 0);
-}
-
-.movie-poster {
+  }
+  
+  /* Movie Modal Poster Styles */
+  .movie-poster {
     max-width: 100%;
     height: auto;
-}
-
-.movie-title {
+  }
+  
+  /* Movie Modal Title Styles */
+  .movie-title {
     font-size: 28px;
     font-weight: bold;
     margin: 10px 0;
-}
-
-.movie-rating {
+  }
+  
+  /* Movie Modal Rating Styles */
+  .movie-rating {
     font-size: 20px;
     color: #ffac00;
     margin-bottom: 20px;
-}
-
-.movie-summary {
+  }
+  
+  /* Movie Modal Summary Styles */
+  .movie-summary {
     font-size: 16px;
     line-height: 1.5;
     margin: 20px 0;
