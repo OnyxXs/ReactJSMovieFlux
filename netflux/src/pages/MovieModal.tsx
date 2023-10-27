@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./MovieModal.css";
+import { auth } from "../config/firebaseConfig";
 
 interface Movie {
   poster_path: string;
@@ -35,17 +36,28 @@ function MovieModal({ movie, onClose }: MovieModalProps) {
   };
 
   const handleCommentSubmit = () => {
-    const newComment: UserComment = {
-      rating,
-      comment,
-      userName: "Nom de l'utilisateur",
-    };
-    setUserComments([...userComments, newComment]);
-
-    setRating(0);
-    setComment("");
+    const user = auth.currentUser;
+    if (user) {
+      const existingComment = userComments.find((comment) => comment.userName === user.email);
+  
+      if (existingComment) {
+        alert("Vous avez déjà posté un commentaire. Vous ne pouvez en poster qu'un seul.");
+      } else {
+        const newComment: UserComment = {
+          rating,
+          comment,
+          userName: user.email!,
+        };
+        setUserComments([...userComments, newComment]);
+  
+        setRating(0);
+        setComment("");
+      }
+    } else {
+      alert("Vous devez être connecté pour laisser un commentaire.");
+    }
   };
-
+  
   return (
     <div className="movie-modal">
       <div className="modal-background">
