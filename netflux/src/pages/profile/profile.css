@@ -1,9 +1,52 @@
-.avatar{
- vertical-align: middle;
- width: 80px;
- height: 80px;
- border-radius: 50px;
- border-width: 5px;
- border-color: gray;
- border-style: outset;
+body {
+    background: rgb(57, 57, 57);
+    color: black;
+}
+
+.h1 {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
+}
+
+.h2 {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: black;
+}
+
+.Leftbar {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    height: 50vh;
+    width: 70vh;
+    margin-top: 10vmax;
+    margin-left: 32vmax;
+}
+
+.pUsername {
+    text-decoration: underline;
+}
+
+button {
+    display: flex;
+    color: white;
+    margin-top: 0.2vmax;
+    padding: 10px 24px;
+    justify-content: center;    
+    width: 13   vmax;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: #717171;
 }
