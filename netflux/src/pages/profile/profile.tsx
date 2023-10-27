@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import './profile.css'
 import {
   Auth,
   getAuth,
@@ -118,12 +119,12 @@ const UserProfile: React.FC = () => {
 
   return (
     <div>
-      <h1>Profil Utilisateur</h1>
+      <h1 className="h1">Profil Utilisateur</h1>
       {user ? (
         <>
           <p>Vous êtes connecté en tant que : {user.email}</p>
 
-          <h2>Changer votre email :</h2>
+          <h2 className="h2">Changer votre email :</h2>
           <input
             type="email"
             value={newEmail}
@@ -135,7 +136,7 @@ const UserProfile: React.FC = () => {
           {updateStatus === "SUCCESS" && <p>Email mis à jour avec succès.</p>}
           {updateStatus === "ERROR" && <p>Erreur lors de la mise à jour.</p>}
 
-          <h2>Changer votre mot de passe :</h2>
+          <h2 className="h2">Changer votre mot de passe :</h2>
           <button onClick={handleSendPasswordResetEmail}>
             Envoyer le lien de réinitialisation du mot de passe
           </button>

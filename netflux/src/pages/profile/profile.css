@@ -1,9 +1,12 @@
-.avatar{
- vertical-align: middle;
- width: 80px;
- height: 80px;
- border-radius: 50px;
- border-width: 5px;
- border-color: gray;
- border-style: outset;
+body {
+    background-color: rgb(53, 53, 53);
+    color: white;
+}
+
+.h1 {
+    background-color: black;
+}
+
+.h2 {
+    background-color: black;
 }
