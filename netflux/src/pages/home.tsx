@@ -112,6 +112,7 @@ function HomeScreen() {
         );
       }
     } else if (sortBy === "director") {
+      // Vous pouvez implémenter la logique pour trier par réalisateur ici
     } else if (sortBy === "rating") {
       return b.vote_average - a.vote_average;
     } else if (sortBy === "category") {
