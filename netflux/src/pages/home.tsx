@@ -13,9 +13,9 @@ interface Movie {
   release_date: string;
   genre_ids: number[];
   overview: string;
-  media_type: string; // Ajout du type de média (film ou série)
-  production_companies: { name: string }[]; // Ajout du producteur du film/série
-  number_of_seasons?: number; // Ajout du nombre de saisons (série uniquement)
+  media_type: string;
+  production_companies: { name: string }[];
+  number_of_seasons?: number;
 }
 
 function HomeScreen() {
