@@ -1,8 +1,12 @@
 body {
+  overflow: scroll;
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
   margin: 0;
   padding: 0;
+}
+
+.startpage {
+  margin-top: 3%;
 }
 
 .header {
@@ -16,7 +20,8 @@ body {
 
 .main-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 affiches par ligne */
+  grid-template-columns: repeat(4, 1fr);
+  /* 4 affiches par ligne */
   grid-gap: 20px;
   padding: 20px;
 }
