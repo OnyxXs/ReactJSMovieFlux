@@ -118,8 +118,11 @@ const UserProfile: React.FC = () => {
   };
 
   return (
-    <div className="">
-      <h1 className="h1">Profil Utilisateur</h1>
+    <div className="Leftbar">
+
+      <div className="h1-container">
+        <h1 className="h1">Profil Utilisateur</h1>
+      </div>
       {user ? (
         <>
           <p>Vous êtes connecté en tant que : {user.email}</p>
