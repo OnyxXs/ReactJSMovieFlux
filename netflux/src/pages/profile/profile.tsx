@@ -118,7 +118,7 @@ const UserProfile: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <h1 className="h1">Profil Utilisateur</h1>
       {user ? (
         <>
