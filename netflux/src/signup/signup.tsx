@@ -36,11 +36,9 @@ const SignUp: React.FC = () => {
 
   return (
     <div>
-      {/* Votre contenu JSX ici */}
       <form onSubmit={handleSubmit}>
         {/* Champs du formulaire et boutons */}
       </form>
-      {/* Autres éléments JSX si nécessaire */}
     </div>
   );
 };

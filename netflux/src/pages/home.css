@@ -1,6 +1,3 @@
-/* home.css */
-
-/* Reset CSS */
 body {
   margin: 0;
   padding: 0;
@@ -8,8 +5,6 @@ body {
   overflow-y: auto;
 }
 
-/* Header Styles */
-/* Header Styles */
 .header {
   background-color: #333;
   color: #fff;
@@ -65,16 +60,13 @@ body {
   background-color: #e68a00;
 }
 
-
-/* Main Content Grid */
 .main-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 affiches par ligne */
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
   padding: 20px;
 }
 
-/* Movie Item Styles */
 .movie-item {
   box-sizing: border-box;
   background-color: #fff;
@@ -84,30 +76,25 @@ body {
   text-align: center;
 }
 
-/* Movie Details Styles */
 .movie-details {
   text-align: left;
 }
 
-/* Movie Title Styles */
 .movie-title {
   font-weight: bold;
   font-size: 18px;
 }
 
-/* Movie Poster Styles */
 .movie-poster {
   max-width: 100%;
   height: auto;
 }
 
-/* Movie Rating Styles */
 .movie-rating {
   color: #f39c12;
   font-size: 14px;
 }
 
-/* Sign Out Button Styles */
 .button-sign-out {
   background-color: #f39c12;
   color: #fff;
@@ -121,7 +108,6 @@ body {
   margin-top: 10px;
 }
 
-/* Category Buttons Styles */
 .category-buttons {
   margin-top: 10px;
 }
@@ -147,7 +133,6 @@ body {
   background-color: #e68a00;
 }
 
-/* Sort Select Styles */
 .sort-select label {
   font-weight: bold;
   margin-right: 10px;
@@ -161,14 +146,12 @@ body {
   font-size: 16px;
 }
 
-/* Search Container Styles */
 .search-container {
   display: flex;
   align-items: center;
   margin: 10px 0;
 }
 
-/* Search Input Styles */
 .search-input {
   flex: 1;
   position: relative;
@@ -191,12 +174,10 @@ search-input select {
   font-size: 16px;
 }
 
-/* Movie Producer Styles */
 .movie-producer {
   font-size: 14px;
 }
 
-/* Movie Seasons Styles */
 .movie-seasons {
   font-size: 14px;
 }
